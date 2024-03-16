@@ -1,32 +1,32 @@
 # react-native-fast-text
 
-A faster version of the React Native Text component that removes (for the most part) unnecessary overhead.
+A faster version of the React Native `Text` component that removes (for the most part) unnecessary overhead.
 
 ## Why?
 
-The native Text implementation includes additional \*onPress props:
+The native `Text` implementation includes additional `*onPress` props:
 
-- onLongPress
-- onPress
-- onPressIn
-- onPressOut
-- disabled
-- pressReactOffset
+- `onLongPress`
+- `onPress`
+- `onPressIn`
+- `onPressOut`
+- `disabled`
+- `pressReactOffset`
 
 It also includes a state variable called `isHighlighted`, which causes unnecessary renders. 
-Additionally, it wraps the Text with the `<TextAncestor.Provider />` context provider, thereby polluting the React tree. 
+Additionally, it wraps the `Text` with the `<TextAncestor.Provider />` context provider, thereby polluting the React tree. 
 
 By removing this extra logic and going straight down into `RCTText` we have a much faster text component.
 
 ### Notice
 
-It's worth noting that removing the context provider has one downside: while nesting Text inside Text still works, each individual Text node must be styled independently since style inheritance is lost. The advantages outweigh the disadvantages though.
+It's worth noting that removing the context provider has one downside: while nesting `Text` inside `Text` still works, each individual `Text` node must be styled independently since style inheritance is lost. The advantages outweigh the disadvantages though.
 
 ## Installation
 
 Install the module. Use it however you'd like.
 
-There's a codmod in here that will convert _all_ of your `import { Text } from 'react-native` to use `import { Text } from 'react-native-fast-text`.
+There's a codmod in here that will convert _all_ of your `import { Text } from 'react-native'` to use `import { Text } from 'react-native-fast-text'`.
 
 ```
 npx jscodeshift -t node_modules/react-native-fast-text/codemods/transform-to-fast-text.js
